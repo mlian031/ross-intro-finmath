@@ -1,0 +1,106 @@
+% TODO: move this into a separate preamble.tex
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fullpage}
+
+\setlength{\parskip}{1em}
+
+\begin{document}
+
+\begin{center}
+    \Large Geometric Brownian Motion Notes
+\end{center}
+
+\section{Summary}
+
+A security that follows a geometric brownian motion is a martingale. This assures that the probabilities concerning the ratio of the price a time $t$ in the future to the present price will not depend on the present price.
+
+There is a simple derivation to $\mu t$ and $\sigma^2 t$ by letting $\Delta$ denote a small increment of time, and at every $\Delta$ units, the price of a security changes only at times that are integral multilpes of $\Delta$.
+
+Geometric Brownian motion is a variant of a model known as Brownian motion. Both processes share the martingale property, however, the difference is that in Brownian motion, it is the \textbf{differences in prices} and not the \textbf{logarithm of their ratio} that has a normal distribution.
+
+A flaw in the Brownian motion model is that it is possible to become negative, since it is a normal random variable. Also it is not completely reasonable to assume that a price difference over an interval of fixed length has the same normal distribution no matter what the price at the beginning of the interval is.
+
+Geometric Brownian motion eliminates these flaws since it is now the \textit{logarithm} of the stock's price that is a normal random variable, and thus cannot be negative. The ratio of priecs separated by a fixed length of time is also a more reasonable assumption, since it is the \textit{percentage} change in price, rather than the absolute change, whose probabilities do not depend on the present price.
+
+\section{Geometric Brownian Motion}
+
+Suppose we are interested in the price of a security as it evolves over time. Let the present time be time 0, and let $S(t)$ denote the price of this security a time $t$ from the present.
+
+These collection of prices $S(t)$, 0 $\leq$ $t$ $<$ $\infty$, follows a \textit{geometric Brownian motion} with drift parameter $\mu$ and volatility parameter $\sigma$ if, for all nonegative values of $t$ and the increment of $\Delta t$, the random variable
+
+\[
+\frac{S(\Delta t +t)}{S(t)}
+\]
+
+is independent of all prices up to time $t$; and if 
+
+\[
+\log \biggl( \frac{S(\Delta t+t)}{S(t)} \biggr)
+\]
+
+is a normal random variable with mean $\mu{\Delta t}$ and variance $\sigma^2 \Delta t$
+
+\noindent \fbox{
+    \parbox{\textwidth}{
+    The series of prices will be a geometric Brownian motion if the \textbf{ratio} of the price a time $t$ in the future to the presnt price will, independent of the past history of prices, have a lognormal probability distribution with parameters $\mu \Delta t$ and $\sigma^2 \Delta t$
+    }
+}
+
+In other words, if we assume a security to follow a geometric Brownian motion, once $\mu$ and $\sigma$ are determined, only the present price - and not the history of past prices - affects probabilities of future prices. This is also known as a \textbf{martingale}.
+
+Furthermore, for an initial given price $S(0)$, the expected value of the price at time $t$ depends on \textit{both} of the geometric Brownian motion parameters, that is, $\mu$ and $\sigma$.
+
+Specifically, if the initial price is $s_0$, then 
+
+\[
+\mathbb{E} [S(t)] = s_0 e^{t(\mu + \frac{\sigma^2}{2})}
+\]
+
+\section{Geometric Brownian Motion as a Limit of Simpler Models}
+
+Let $\Delta$ denote a small increment of time and suppose that, every $\Delta$ time units, the price of a security either goes up by a factor $u$ with probability $p$ or goes down by the factor $d$ with probability $1 - p$, where
+
+\[
+u = e^{\sigma \sqrt{\Delta}},\qquad d = e^{-\sigma\sqrt{\Delta}}
+\]
+
+\[
+p = \frac{1}{2} \left( 1 + \frac{\mu}{\sigma}\sqrt{\Delta} \right)
+\]
+
+That is, we're supposing that the price of the security changes only at times that are integral multiples of $\Delta$; at these times, it either goes up by the factor $u$ or down by the factor $d$.
+
+Let us verify that this model becomes geometric Brownian motion as we let $i \Delta$ become smaller and samller. To begin, let $Y_i$ equal 1 if the price goes up at time $i \Delta$, and let it be 0 if it goes down.
+
+The number of times that the security's price goes up in the first $n$ increments is \(\sum_{i=1}^{n} Y_i \), and the number of times it goes down is then, \(n - \sum_{i=1}^{n} Y_i\).
+
+Hence, $S(n\Delta)$ its price at the end of this time, can be expressed as 
+
+\[ 
+S(n \Delta) = S(0) u^{\sum_{i=1}^{n}Y_i} d^{n - \sum_{i=1}^{n} Y_i}
+\]
+
+or 
+\[
+S(n \Delta) = d^{n} S(0) \biggl( \frac{u}{d} \biggr)^{\sum_{i=1}^{n} Y_i}
+\]
+
+If we now let \( n = \frac{t}{\Delta} \), then the preceeding equation becomes 
+
+\begin{align*}
+    \frac{S(t)}{S(0)} &= d^{\frac{t}{\Delta}} \biggl( \frac{u}{d} \biggr)^{\sum_{i=1}^{\frac{t}{\Delta}} Y_i} \\
+\log \biggl( \frac{S(t)}{S(0)} \biggr) &= \frac{t}{\Delta} \log{(d)} + \log{\biggl(\frac{u}{d}\biggr)} \sum_{i=1}^{\frac{t}{\Delta}} Y_i \\
+\end{align*}
+
+\begin{equation}\label{1}
+    \frac{-t\sigma}{\sqrt{\Delta}} + 2 \sigma \sqrt{\Delta} \sum_{i=1}^{\frac{t}{\Delta}} Y_i
+\end{equation}
+
+Moreover, as $\Delta$ goes to 0, there are more and more terms in the summation $\sum_{i=1}^{t / \Delta} Y_i$; hence, by the \textbf{Central Limit Theorem}, this sum becomes more and more normal, implying that from equation \eqref{1}, $\log \biggl(\frac{S(t)}{S(0)}\biggr)$ becomes a normal random variable.
+
+\end{document}
