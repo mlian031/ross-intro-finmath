@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1724826571.17212 "/home/mlian/Documents/ross-intro-finmath/3 Geometric Brownian Motion/main.tex" "main.pdf" "main" 1724826571.59607 0
-  "/home/mlian/Documents/ross-intro-finmath/3 Geometric Brownian Motion/main.tex" 1724826571.00789 9343 9e61b0acc46a8f61af7793d215c2b893 ""
+["pdflatex"] 1724826917.51543 "/home/mlian/Documents/ross-intro-finmath/3 Geometric Brownian Motion/main.tex" "main.pdf" "main" 1724826917.92605 0
+  "/home/mlian/Documents/ross-intro-finmath/3 Geometric Brownian Motion/main.tex" 1724826917.35393 9344 4c2dbd408c394047106198865332f9d9 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -171,8 +171,8 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1714953600 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1724642477.55931 4547344 09b200d6d21f1c0b39cba8696f0a38d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1724642254 7759795 38ef65caeae970c0fcfcb1ec44701637 ""
-  "main.aux" 1724826571.5409 500 fdb6dcfee413e5ae57df9bf5db7efb8a "pdflatex"
-  "main.tex" 1724826571.00789 9343 9e61b0acc46a8f61af7793d215c2b893 ""
+  "main.aux" 1724826917.87193 500 fdb6dcfee413e5ae57df9bf5db7efb8a "pdflatex"
+  "main.tex" 1724826917.35393 9344 4c2dbd408c394047106198865332f9d9 ""
   (generated)
   "main.aux"
   "main.log"
