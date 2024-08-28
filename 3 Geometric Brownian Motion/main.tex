@@ -103,4 +103,141 @@ If we now let \( n = \frac{t}{\Delta} \), then the preceeding equation becomes
 
 Moreover, as $\Delta$ goes to 0, there are more and more terms in the summation $\sum_{i=1}^{t / \Delta} Y_i$; hence, by the \textbf{Central Limit Theorem}, this sum becomes more and more normal, implying that from equation \eqref{1}, $\log \biggl(\frac{S(t)}{S(0)}\biggr)$ becomes a normal random variable.
 
+\begin{align*}
+    \mathbb{E} \biggl[ \log \bigl( \frac{S(t)}{S(0)} \bigr)  \biggr] &= \frac{-t\sigma}{\sqrt{\Delta}} + 2 \sigma \sqrt{\Delta} \sum_{i=1}^{\frac{t}{\Delta}} \mathbb{E}[Y_i] \\
+    &= \frac{-t\sigma}{\sqrt{\Delta}} + 2 \sigma \sqrt{\Delta} \frac{t}{\Delta} p \\
+    &= \frac{-t\sigma}{\sqrt{\Delta}} + \frac{t\sigma}{\sqrt{\Delta}} \bigl( 1 + \frac{\mu}{\sigma}\sqrt{\Delta} \bigr) \\
+    &= \mu t
+\end{align*}
+
+Furthermore, it yields that
+
+\begin{align*}
+   \text{Var} \bigl( \log \bigl( \frac{S(t)}{S(0)} \bigr)  \bigr) &= 4\sigma^2\Delta\sum_{i=1}^{\frac{t}{\Delta}} \text{Var}(Y_i) \qquad \text{(by independence)} \\ 
+   &= 4 \sigma^2 t p ( 1- p) \\
+   &= - \sigma^2t \qquad (\text{since, for small~~} \Delta, p \approx 1/2 )
+\end{align*}
+
+
+\section{Exercises}
+
+\textbf{4.1} Suppose that $S(y), y>= 0$, is a geometric Brownian motion with drift parameter $\mu$ = .01 and volatility parameter $\sigma$ = .2. If $S(0) = 100$, find:
+
+\noindent (a) $\mathbb{E}[S(10)]$ \\
+(b) P\{S(10) $>$ 100\} \\
+(c) P\{S(10) $<$ 110\}
+
+Solution:
+
+(a) For a standard geometric Brownian motion, \(\mathbb{E}[S(t)] = S_0 e^{t(\mu+\frac{\sigma^2}{2})} \), so \(\mathbb{E}[S(10)] = 100 e^{10(0.01+\frac{0.2^2}{2})} \), which is 134.985
+
+(b) \[
+Z = \frac{X - \mu}{\sigma}
+\] 
+
+\begin{align*}
+    P\{S(10) > 100 \} &= P \{ \log \bigl(S(10)\bigr) > \log{(100)} \} \\
+\end{align*}
+
+Finding out mean $m(t)$ and variance $v(t)$, 
+
+\begin{align*}
+    m(t) &= \log(S(0)) + (\mu - \frac{\sigma^2}{2}) t \\
+    v(t) &= \sigma^2 t
+\end{align*}
+
+\begin{align*}
+    m(10) &= \log(100) + (0.01 - \frac{0.20^2}{2}) \cdot 10 \\
+    &= 1.9
+\end{align*}
+
+\begin{align*}
+    v(10) = (0.20)^2 \cdot 10 = 0.4
+\end{align*}
+
+\[
+Z = \frac{\log(100) - m(10)}{\sqrt{v(10)}}
+\]
+
+\[
+Z = 0.158113883
+\]
+
+\begin{align*}
+P \{Z > 0.158113883 \} &= 1 - \phi{(0.158113883)} \\
+\phi(0.158113883) &\approx 0.56282 \\
+P \{Z > 0.158113883 \} &= 1 - 0.5682 = 0.4318
+\end{align*}
+
+The probability that $S(10) > 100$ is approximately 0.4318, and the probability that $S(10) < 100$ is approximately 0.56282.
+
+
+\noindent \textbf{4.2} Repeat when the volatility parameter is 0.4
+
+
+Solution: 245.96, 0.5682, 0.43718
+
+\noindent \textbf{4.3} Repeat when the volatility parameter is 0.6
+
+Solution: 668.589, 0.3665, 0.6335
+
+\noindent \textbf{4.4} It can be shown that if X is a normal random variable with mean $m$ and variance $v^2$, then
+
+\[
+\mathbb{E}[e^X] = e^{m + \frac{v^2}{2}}
+\]
+
+\noindent Use this result to verify the formula for $\mathbb{E}[S(t)]$.
+
+
+Solution: 
+
+We know that $S(t) / S(0)$  is distributed as $e^X$ where X is normally distributed with mean $\mu t$ and variance $t\sigma^2$. 
+
+That is, $X: X \sim N(\mu t, t\sigma^2)$. 
+
+Since X has a mean $m = \mu t$ and variance $v = t\sigma^2$,
+
+\[
+\mathbb{E}[e^X] = e^{\mu t + t\frac{sigma^2}{2}}
+\]
+
+And $S(t) = S(0)e^X$, the expectation is 
+
+\begin{align*}
+    \mathbb{E}[S(t)] &= S(0)\mathbb{E}[e^X] \\
+    \mathbb{E}[S(t)] &= S(0)e^{\mu t + t\frac{\sigma^2}{2}} \\
+    \mathbb{E}[S(t)] &= S(0)e^{t(\mu + \frac{\sigma^2}{2})} 
+\end{align*}
+
+
+
+\noindent \textbf{4.5} Use the result of the preceding exercise to find Var($S(t)$) when $S(0) = s_0$
+
+\textit{Hint:} Use the identity
+
+\[
+\text{Var(X)} = \mathbb{E}[X^2] - (\mathbb{E}[X])^2.
+\]
+
+Solution:
+
+From the previous exercise, we find $S(t) / s_0$ is distributed as $e^X$ where X is normal with mean $\mu t$ and variance $t\sigma^2$.
+
+\[
+\mathbb{E}[S(t)] = s_0 \mathbb{E}[e^X] = s_0 e^{\mu t + t \frac{\sigma^2}{2}}
+\]
+
+\[
+\mathbb{E}[S^2(t)] = {s_0}^2 \mathbb{E}[(e^X)^2] = {s_0}^2 e^{2\mu t + 2 t\sigma^2}
+\]
+
+Hence, by $\text{Var(X)} = \mathbb{E}[X^2] - (\mathbb{E}[X])^2$, 
+
+\[
+\text{Var}(S(t)) = {s_0}^2 e^{2\mu t + 2t\sigma^2}- {s_0}^2 e^{2 \mu t + t \sigma^2} = {s_0}^2 e^{2\mu t + t\sigma^2}(e^{t\sigma^2} - 1) 
+\]
+
+
+
 \end{document}
